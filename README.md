@@ -10,7 +10,15 @@ I’m a software/hardware developer and a video artist that likes to create tech
 - Create a single HTML5 website template that renders WebGL fragment shaders without external libraries. 
 - Share insights to others about the Bitcoin inscription process for artistic purposes.
 - Use Bitcoin to distribute art without downtime or censorship.
-- Add libraries to the blockchain where needed. 
+- Add libraries to the blockchain where needed.
+
+## Why is this important?
+
+- OpenGL allows for high-fidelity graphics by working directly with the GPU. WebGL is the web version of OpenGL. If you’ve used a computer in the past 30 years, you’ve experienced OpenGL graphics. For example, Three.js is a user-friendly wrapper for WebGL.
+- Empower others to push the limits of graphical possibilities on the Bitcoin blockchain.
+- The size of a shader is small, which makes it great for inscribing. Technically, there is no size limitation to shaders that I know of.
+- No external dependencies. HTML5 + Javascript is all you need.
+- A HTML5 + WebGL website example inscription hasn’t happened yet.
 
 # On-chain Files
 | Inscription    | On-chain Content |
@@ -43,14 +51,6 @@ I’m a software/hardware developer and a video artist that likes to create tech
 | #12102426 | [link](https://ordinals.com/preview/181bd2f56701a42053c816809ae62f77739982523ff5607ada0022799b91a6d9i0) |
 
 # Tutorial
-
-## Why is this important?
-
-- OpenGL allows for high-fidelity graphics by working directly with the GPU. WebGL is the web version of OpenGL. If you’ve used a computer in the past 30 years, you’ve experienced OpenGL graphics. For example, Three.js is a user-friendly wrapper for WebGL.
-- Empower others to push the limits of graphical possibilities on the Bitcoin blockchain.
-- The size of a shader is small, which makes it great for inscribing. Technically, there is no size limitation to shaders that I know of.
-- No external dependencies. HTML5 + Javascript is all you need.
-- A HTML5 + WebGL website example inscription hasn’t happened yet.
 
 ## HTML5 Template
 To start, I needed a working example which demonstrated how to run a WebGL example within a HTML5 file. The key was finding one that loads a _fragment shader_. Luckily, I found a working an [example](https://wolftype.github.io/200c/about/) from Pablo Colapinto that runs locally without any external dependencies. This example is pasted below.
@@ -259,6 +259,7 @@ function start(){
 
 </html>
 ```
+
 I look for the Fragment Shader section and removed the code from inside the _<script>_ tag. Below is what it should look like once you remove the code from the template.
 
 ``` html
@@ -270,7 +271,7 @@ I look for the Fragment Shader section and removed the code from inside the _<sc
 ...
 ```
 
-Then, I pasted my GLSL shader, or F_ragment Shader_, into the area where it says Add GLSL Shader Code here.
+Then, I pasted my GLSL shader, or _Fragment Shader_, into the area where it says Add GLSL Shader Code here.
 
 ``` javascript
 <!-- FRAGMENT SHADER SOURCE -->
@@ -320,48 +321,82 @@ Then, I pasted my GLSL shader, or F_ragment Shader_, into the area where it says
 </script>
 ```
 
-Save the file as a new index.html. Check to see if the shader rasters correctly.
+Save the file as a new _index.html_. Check to see if the shader rasters correctly.
 
-IMAGE
+<h3 align="center">
+  <img height="50%" width="50%" src="https://github.com/user-attachments/assets/7ced5564-d09d-4e16-a7a5-c7d6577942cc"/>
+</h3>
+
+<h3 align="center">
+  <img height="50%" width="50%" src="https://github.com/user-attachments/assets/6aa22574-788e-43c4-8fff-d26a3d1d4a8e"/>
+</h3>
+
 
 ## Inscribing to the Bitcoin blockchain
 
 We’ve tested it locally, and it runs as expected. Code is [here](https://gist.github.com/cskonopka/6f00d256ad42413ce6e3c28d8410aef0) if you are curious. It’s time to inscribe.
 
-
 ## Inscribing the HTML file
 Go to [looksordinal](https://looksordinal.com/). It is a cost-effective site for self-custodial bulk inscriptions. The website looks like the image below.
 
-  <img height="60%" width="60%" src="https://miro.medium.com/v2/resize:fit:786/format:webp/1*gLEiaEzNXRz4a_0imbQFYg.png"/>
+<img height="60%" width="60%" src="https://miro.medium.com/v2/resize:fit:786/format:webp/1*gLEiaEzNXRz4a_0imbQFYg.png"/>
 
 Add your _Ordinal address_ to the _Receiving Address_ section. Don’t forget that your Ordinal address is different than your BTC recipient address.
 
-https://miro.medium.com/v2/resize:fit:786/format:webp/1*FfQR-ZWPv9X8WK8ULjMulw.png
+![1_c5bwlsi6n0Pz912brWPGGA copy](https://miro.medium.com/v2/resize:fit:786/format:webp/1*FfQR-ZWPv9X8WK8ULjMulw.png)
 
 Choose the file you would like to inscribe. Here, it’s _index.html_.
 
-https://miro.medium.com/v2/resize:fit:828/format:webp/1*0Eg3VhdVsUUPo4FD4-NV3g.png
+![1_c5bwlsi6n0Pz912brWPGGA copy](https://miro.medium.com/v2/resize:fit:828/format:webp/1*0Eg3VhdVsUUPo4FD4-NV3g.png)
 
 Select the _freerate_. I’d suggest _Mid_ because if you choose _Min_, you risk waiting a long time for the inscription to complete. Don’t forget to tip your dev!
 
-https://miro.medium.com/v2/resize:fit:786/format:webp/1*PrZAhiOAoThTGevLkH1kPg.png
+![1_c5bwlsi6n0Pz912brWPGGA copy](https://miro.medium.com/v2/resize:fit:786/format:webp/1*PrZAhiOAoThTGevLkH1kPg.png)
 
 Click _Estimate Fees_ to see the cost of the inscription. Then the press the _inscribe_ button.
 
-https://miro.medium.com/v2/resize:fit:786/format:webp/1*V0HFcKhZbPuYiPgV2XckNg.png
+![1_c5bwlsi6n0Pz912brWPGGA copy](https://miro.medium.com/v2/resize:fit:786/format:webp/1*V0HFcKhZbPuYiPgV2XckNg.png)
 
 The page will transition to the payment process. Scan the QR code with your preferred Bitcoin app and send the payment to the address provided.
 
-https://miro.medium.com/v2/resize:fit:786/format:webp/1*088ZxCOGHyV_1zWvuaTrmQ.png
+![1_c5bwlsi6n0Pz912brWPGGA copy](https://miro.medium.com/v2/resize:fit:786/format:webp/1*088ZxCOGHyV_1zWvuaTrmQ.png)
 
 Once the payment is received, the inscription process begins. Click the transaction link.
 
-https://miro.medium.com/v2/resize:fit:786/format:webp/1*CdJzyJaNmLAGjjVoNKor0Q.png
+![1_c5bwlsi6n0Pz912brWPGGA copy](https://miro.medium.com/v2/resize:fit:786/format:webp/1*CdJzyJaNmLAGjjVoNKor0Q.png)
 
 Track the progress of your inscription by using [mempool.space](https://mempool.space/).
 
-https://miro.medium.com/v2/resize:fit:786/format:webp/1*P_Sa3nR0pu83TvjPHPj3dg.png
+![1_c5bwlsi6n0Pz912brWPGGA copy](https://miro.medium.com/v2/resize:fit:786/format:webp/1*P_Sa3nR0pu83TvjPHPj3dg.png)
 
+<h3 align="center">
+  <img height="50%" width="50%" src="https://github.com/user-attachments/assets/46100658-8278-482d-ad15-f9864e435178"/>
+</h3>
+
+When it’s finished inscribing, check it out on Ordinals.
 
 ## Final thoughts
 This is the first time a WebGL compatible HTML5 webpage has been inscribed to the Bitcoin blockchain. It is a massive moment for decentralized graphics and pushes the perception of how a blockchain can be used. It’s your turn, change the world.
+
+# Glossary
+
+Here is primer if you are unfamiliar with concepts mentioned above.
+
+_Bitcoin Ordinals_: The new Ordinals protocol allows people who operate Bitcoin nodes to inscribe each sat with data, creating something called an Ordinal. That data inscribed on Bitcoin can include smart contracts, which in turn enables NFTs. In rough terms, Ordinals are NFTs you can mint directly onto the Bitcoin blockchain.
+
+_WebGL_: WebGL is a JavaScript API for rendering interactive 2D and 3D graphics within any compatible web browser without the use of plug-ins. WebGL is fully integrated with other web standards, allowing GPU-accelerated usage of physics and image processing and effects as part of the web page canvas.
+
+_GLSL Shaders_: Shaders use GLSL (OpenGL Shading Language), a special OpenGL Shading Language with syntax similar to C. GLSL is executed directly by the graphics pipeline. There are several kinds of shaders, but two are commonly used to create graphics on the web: Vertex Shaders and Fragment (Pixel) Shaders. Applications using OpenGL include computer games, virtual reality, augmented reality, 3D animation, CAD and other visual simulations.
+
+_OpenGL_: OpenGL (Open Graphics Library) is a cross-language, multi-platform application programming interface (API) for rendering 2D and 3D vector graphics. The API is typically used to interact with a graphics processing unit (GPU), to achieve hardware-accelerated rendering.
+
+# References
+- [Ordinals protocol](https://github.com/casey/ord/blob/master/bip.mediawiki)
+- [Bitcoin NFTs? Ordinals Inscriptions Explained (Finding, Buying, & More)](https://nftnow.com/guides/bitcoin-nfts-ordinals-inscriptions-explained-finding-buying-more/)
+- [What are Bitcoin Ordinals?](https://www.bitstamp.net/learn/blockchain/what-are-bitcoin-ordinals/)
+- [GLSL Shaders](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders)
+- [OpenGL](https://en.wikipedia.org/wiki/OpenGL)
+- [What is WebGL?](https://www.youtube.com/watch?v=f-9LEoYYvE4)
+- [What is a fragment shader?](https://thebookofshaders.com/01/)
+- [Xverse wallet](https://www.xverse.app/)
+- [What Are The Types Of Bitcoin Public Keys?](https://thebitcoinmanual.com/articles/types-btc-public-keys/)
