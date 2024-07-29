@@ -1,10 +1,8 @@
-# WebGL-Ordinals
-
 <h3 align="center">
-  <img height="60%" width="60%" src="https://github.com/user-attachments/assets/80df319e-f758-4d62-be36-3a6d03c9bd4f"/>
+  <img height="60%" width="60%" src="https://github.com/cskonopka/WebGL-Ordinals/blob/main/webglo.png?raw=true"/>
 </h3>
 
-<p align="center"><em>WebGL on the Bitcoin blockchain</em></p>
+<p align="center"><em>web graphics on the Bitcoin blockchain</em></p>
 
 # Overview
 I’m a software/hardware developer and a video artist that likes to create tech that doesn’t exist with the goal of empowering others. Doing my best to find tools that are available to everyone. This is one way to approach the problem of content distribution for artist. Some goals for the project:
