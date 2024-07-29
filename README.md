@@ -4,11 +4,20 @@
   <img height="60%" width="60%" src="https://github.com/user-attachments/assets/80df319e-f758-4d62-be36-3a6d03c9bd4f"/>
 </h3>
 
-<p align="center"><em>WebGL on the Bitcoin</em></p>
+<p align="center"><em>WebGL on the Bitcoin blockchain</em></p>
+
+# Overview
+I’m a software/hardware developer and a video artist that likes to create tech that doesn’t exist with the goal of empowering others. Doing my best to find tools that are available to everyone. This is one way to approach the problem of content distribution for artist. Some goals for the project:
+
+- Create a single HTML5 website template that renders WebGL fragment shaders without external libraries. 
+- Share insights to others about the Bitcoin inscription process for artistic purposes.
+- Use Bitcoin to distribute art without downtime or censorship.
+- Add libraries to the blockchain where needed. 
 
 # On-chain Files
-| Inscription    | Link |
+| Inscription    | On-chain Content |
 | -------- | ------- |
+| glsl-canvas.js | [link](https://ordinals.com/content/aeb29dfe6396589bd501f2be3478202a6ed75989cfc5ff49dd0d704b012c00eci0) |
 | #11635450 | [link](https://ordinals.com/preview/5518d36079b3cc854dba0bd6497ec078fbaa996ebd53e908150c845d6a56a463i0) |
 | #11637749 | [link](https://ordinals.com/preview/af030674ee65b6bd72e71b92ddb4edbeafbc47768e2e412b7ff2415097447a2ci0) |
 | #11805310 | [link](https://ordinals.com/preview/5534cd7b566ba833e59ca5d5db3f15d97c2263992c031bb83c6383a1406892cai0) |
@@ -34,7 +43,6 @@
 | #12102424 | [link](https://ordinals.com/preview/2fbe24ceb06bc433d37321b47701644868cf877fda2d80923e0ed66a3c00a876i0) |
 | #12102425 | [link](https://ordinals.com/preview/dda24ae020f4994f88d8274a64c8395acd1513cd7384dbd753e2a802d3864bf3i0) |
 | #12102426 | [link](https://ordinals.com/preview/181bd2f56701a42053c816809ae62f77739982523ff5607ada0022799b91a6d9i0) |
-
 
 # Tutorial
 
