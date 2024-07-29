@@ -50,6 +50,10 @@ I’m a software/hardware developer and a video artist that likes to create tech
 | #12102425 | [link](https://ordinals.com/preview/dda24ae020f4994f88d8274a64c8395acd1513cd7384dbd753e2a802d3864bf3i0) |
 | #12102426 | [link](https://ordinals.com/preview/181bd2f56701a42053c816809ae62f77739982523ff5607ada0022799b91a6d9i0) |
 
+<h3 align="center">
+  <img height="60%" width="60%" src="https://github.com/user-attachments/assets/b714c712-ca6c-4bd8-90ab-8fac983c3b95"/>
+</h3>
+
 # Tutorial
 
 ## HTML5 Template
