@@ -23,7 +23,7 @@ I’m a software/hardware developer and a video artist that likes to create tech
 # On-chain Files
 | Inscription    | On-chain Content |
 | -------- | ------- |
-| glsl-canvas.js | [link](https://ordinals.com/content/aeb29dfe6396589bd501f2be3478202a6ed75989cfc5ff49dd0d704b012c00eci0) |
+| glsl-canvas.js v0.2.8 | [link](https://ordinals.com/content/aeb29dfe6396589bd501f2be3478202a6ed75989cfc5ff49dd0d704b012c00eci0) |
 | #11635450 | [link](https://ordinals.com/preview/5518d36079b3cc854dba0bd6497ec078fbaa996ebd53e908150c845d6a56a463i0) |
 | #11637749 | [link](https://ordinals.com/preview/af030674ee65b6bd72e71b92ddb4edbeafbc47768e2e412b7ff2415097447a2ci0) |
 | #11805310 | [link](https://ordinals.com/preview/5534cd7b566ba833e59ca5d5db3f15d97c2263992c031bb83c6383a1406892cai0) |
