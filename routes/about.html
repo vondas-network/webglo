@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - WebGL Ordinals</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">  
+    <style>
+        /* Fullscreen Responsive Background Iframe */
+        .background-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Places it behind all other content */
+            pointer-events: none; /* Prevents interaction */
+            object-fit: cover; /* Ensures the content fills the viewport while maintaining aspect ratio */
+            object-position: center; /* Centers the iframe content */
+        }
+
+        /* General Styles */
+        body {
+            margin: 0;
+            overflow-y: auto; /* Enable scrolling */
+            background-color: #121212;
+            color: white;
+            font-family: "Audiowide", sans-serif;
+        }
+
+        h1 {
+            font-family: "Audiowide", sans-serif;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: rgba(34, 34, 34, 0.5);
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer .nav-link {
+            color: white;
+            font-size: 1.1rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        footer .custom-text i {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fullscreen Background iframe -->
+    <iframe 
+        class="background-iframe" 
+        src="https://ordinals.com/content/af030674ee65b6bd72e71b92ddb4edbeafbc47768e2e412b7ff2415097447a2ci0" 
+        frameborder="0">
+    </iframe>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">WebGL Ordinals</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Content -->
+    <div class="container my-5 text-center">
+        <h1>About WebGL Ordinals</h1>
+        <p>
+            Welcome to WebGL Ordinals, where cutting-edge technology meets creativity. Our mission is to bring the world closer through immersive WebGL experiences powered by blockchain innovations. 
+        </p>
+        <p>
+            Explore our projects, connect with us on social media, and be part of the journey as we redefine the way digital art and technology intersect.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <nav>
+            <span class="custom-text">
+                <i class="fab fa-youtube"></i> 
+                <a href="https://www.youtube.com" target="_blank" class="nav-link d-inline">YouTube</a> 
+                <i class="fab fa-github"></i> 
+                <a href="https://github.com" target="_blank" class="nav-link d-inline">GitHub</a>
+                <i class="fab fa-instagram"></i> 
+                <a href="https://www.instagram.com" target="_blank" class="nav-link d-inline">Instagram</a>
+            </span>
+        </nav>
+    </footer>
+</body>
+</html>

@@ -1,179 +1,214 @@
-<html>
-<script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Grid with JSON Data</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">  
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.youtube.com/s/desktop/1fbbfaed/img/favicon.ico" type="image/x-icon">
+<style>
+        /* Fullscreen Responsive Background Iframe */
+        .background-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Places it behind all other content */
+            pointer-events: none; /* Prevents interaction */
+            object-fit: cover; /* Ensures the content fills the viewport while maintaining aspect ratio */
+            object-position: center; /* Centers the iframe content */
+        }
 
-var GL;
-var shaderId;
-var vertexBuffer;
-var indexBuffer;
-var timer = 0;
+        /* General Styles */
+        body {
+            margin: 0;
+            overflow-y: auto; /* Enable scrolling */
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer stays at the bottom */
+        }
 
-function initWebGL(){
-    var canvas = document.getElementById("glcanvas");
-    GL = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-    if (!GL) {
-      alert("Unable to initialize WebGL. Your browser may not support it.");
-    }
-    GL.clearColor(1.0, 0.0, 0.0, 1.0);
-    GL.clear(GL.COLOR_BUFFER_BIT| GL.DEPTH_BUFFER_BIT);
+        h1 {
+            font-family: "Audiowide", sans-serif;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    initShaderProgram();
-    initBuffers();
-}
+        /* Navigation bar styles */
+        nav {
+            font-family: "Audiowide", sans-serif;
+            margin-bottom: 30px;
+        }
 
-function initShaderProgram(){
-    shaderId = GL.createProgram();
-    var vertId = GL.createShader(GL.VERTEX_SHADER);
-    var fragId = GL.createShader(GL.FRAGMENT_SHADER);
-    var vert = document.getElementById("vertScript").text;
-    var frag = document.getElementById("fragScript").text;
+        .navbar {
+            justify-content: space-between; /* Aligns title and links */
+        }
 
-    GL.shaderSource(vertId, vert);
-    GL.shaderSource(fragId, frag);
-    GL.compileShader(vertId);
-    GL.compileShader(fragId);
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
 
-    if (!GL.getShaderParameter(vertId, GL.COMPILE_STATUS)) {  
-        alert("Vertex Shader Compiler Error: " + GL.getShaderInfoLog(id));  
-        GL.deleteShader(vertId);
-        return null;  
-    }
+        .navbar-nav .nav-link:hover {
+            color: #0d6efd; /* Bootstrap primary color */
+        }
 
-    if (!GL.getShaderParameter(fragId, GL.COMPILE_STATUS)) {  
-        alert("Fragment Shader Compiler Error: " + GL.getShaderInfoLog(id));  
-        GL.deleteShader(fragId);
-        return null;  
-    }
+        /* Transparent Navbar */
+        .navbar.bg-transparent {
+            background-color: transparent !important;
+        }
 
-    GL.attachShader(shaderId, vertId);
-    GL.attachShader(shaderId, fragId);
-    GL.linkProgram(shaderId);
+        /* Grid image styles */
+        .grid-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
 
-    if (!GL.getProgramParameter(shaderId, GL.LINK_STATUS)) {
-      alert("Shader Linking Error: " + GL.getProgramInfoLog(shader));
-    }     
-}
+        .grid-item img:hover {
+            transform: scale(1.05);
+        }
 
-function initBuffers(){
-    var vertices = new Float32Array( [
-      -1.0, -1.0, 0.0,
-      -1.0,  1.0, 0.0,
-       1.0,  1.0, 0.0,
-       1.0, -1.0, 0.0
-    ]);
+        /* Footer styles */
+        footer {
+            padding: 15px 0;
+            text-align: center;
+            margin-top: auto; /* Push footer to the bottom */
+            width: 100%; /* Make sure footer takes the full width */
+        }
 
-    vertexBuffer = GL.createBuffer();
-    GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
-    GL.bufferData(GL.ARRAY_BUFFER, vertices.byteLength, GL.STATIC_DRAW);
-    GL.bufferSubData(GL.ARRAY_BUFFER, 0, vertices );
+        footer .nav-link {
+            color: white;
+            font-size: 1.1rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
 
-    var indices = new Uint16Array([ 0,1,3,2 ]);
-    indexBuffer = GL.createBuffer();
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, indexBuffer);
-    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, indices.byteLength, GL.STATIC_DRAW);
-    GL.bufferSubData(GL.ELEMENT_ARRAY_BUFFER, 0, indices );
-}
+        footer .nav-link:hover {
+            color: #0d6efd;
+        }
 
-window.requestAnimFrame = ( function() {
-    return  window.requestAnimationFrame || 
-            window.webkitRequestAnimationFrame ||  
-            window.mozRequestAnimationFrame || 
-            window.oRequestAnimationFrame || 
-            window.msRequestAnimationFrame ||
-    
-    function(callback) {
-      window.setTimeout(callback, 1000 / 60);
-    };
-  } ) (); 
+        /* Custom text in footer */
+        footer .custom-text {
+            color: white;
+            font-size: 1.1rem;
+        }
 
-function animationLoop(){
-    requestAnimFrame( animationLoop );
-    render(); 
-}
+        /* Custom icon styling */
+        footer .custom-text i {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fullscreen Background iframe -->
+    <iframe 
+        class="background-iframe" 
+        src="https://ordinals.com/content/af030674ee65b6bd72e71b92ddb4edbeafbc47768e2e412b7ff2415097447a2ci0" 
+        frameborder="0">
+    </iframe>
 
-function render(){
-    timer+=.1;
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+        <div class="container-fluid">
+            <!-- Site Title -->
+            <a class="navbar-brand" href="#">WebGL Ordinals</a>
+            
+            <!-- Toggle Button for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    GL.useProgram(shaderId);   
-    var uID = GL.getUniformLocation(shaderId, "uTime");
-    GL.uniform1f(uID, timer);
-    var attId = GL.getAttribLocation(shaderId, "position");
-    GL.enableVertexAttribArray(attId);
-    GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
-    GL.vertexAttribPointer( attId, 3, GL.FLOAT, false, 0, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, indexBuffer);
-    GL.drawElements(GL.TRIANGLE_STRIP, 4, GL.UNSIGNED_SHORT, 0);
-}
+            <!-- Links on the Right -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#gallery">about</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li> -->
 
-function start(){
-    initWebGL();
-    animationLoop();
-}
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-</script>
-<script id="vertScript" type="text/glsl">
+    <!-- Content Container -->
+    <div class="container my-5">
+        <!-- <h1>WebGL Ordinals</h1> -->
 
-  #ifdef GL_ES
-  precision lowp float;
-  #endif
+        <!-- Responsive Grid -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 row-cols-lg-5 g-3" id="grid">
+            <!-- Dynamic content will be injected here -->
+        </div>
+    </div>
 
-  attribute vec3 position; 
+    <!-- Footer -->
+    <footer>
+        <nav>
+            <span class="custom-text">
+                <i class="fab fa-youtube"></i> 
+                <a href="https://www.youtube.com" target="_blank" class="nav-link d-inline"></a> 
+                <i class="fab fa-github"></i> 
+                <a href="https://github.com" target="_blank" class="nav-link d-inline"></a>
+                <i class="fab fa-instagram"></i> 
+                <a href="https://www.instagram.com" target="_blank" class="nav-link d-inline"></a>
+            </span>
+        </nav>
+    </footer>
 
-  void main(void) {
-    gl_Position = vec4(position,1.0);
-  }
+    <script>
+        // Function to load JSON data
+        async function loadJsonData() {
+            try {
+                const response = await fetch('data.json'); // JSON file path
+                if (!response.ok) {
+                    throw new Error(`Failed to load JSON data: ${response.statusText}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error(error);
+                return []; // Return an empty array on error
+            }
+        }
 
-</script>
+        // Generate grid items dynamically
+        async function createGrid() {
+            const data = await loadJsonData(); // Load JSON data
+            const gridContainer = document.getElementById('grid');
 
-<script id="fragScript" type="text/glsl">
+            data.forEach((item, index) => {
+                const colDiv = document.createElement('div');
+                colDiv.className = 'col grid-item';
 
-    #ifdef GL_ES
-    precision mediump float;
-    #endif
-    
-    #define PI 3.14159265359
-    
-    uniform vec2 uResolution;
-    uniform vec2 uMouse;
-    uniform float uTime;
-    
-    float plot(vec2 st, float pct){
-      return  smoothstep( pct-0.02, pct, st.y) -
-              smoothstep( pct, pct+0.02, st.y);
-    }
-    
-    void main() {
-        vec2 st = gl_FragCoord.xy/vec2(640,480);
-        st -= 0.5;  // becomes -0.5 to 0.5
-        st *= 12.0;
-        float pct2 = 0.0;
-        pct2 = distance(st,vec2(0.5));
-    
-        float y3 = sin(cos((st.y)*(0.10)))-sin(st.x+st.y*02.2);
-        float y = smoothstep(1.2-(sin(((y3)))*(cos(st.y/-9.2))),0.5,st.x) - smoothstep(0.5,0.1,(st.x*0.2))+(sin(st.x-(uTime*.0412)));
-        float y2 = smoothstep(04.91,02.5,st.y+st.x) - smoothstep(0.481,0.918,st.y);
-        vec3 colorA = vec3(y*y2)-(y3-(0.14))*(sin(st.x-(uTime*.02412)));
-        colorA = (1.0)*colorA*vec3(.020+(sin(((y3+y)))+(cos(pct2*-0.2))),0.120,(0.10+(sin(y3))));
-    
-        float y4 = cos(cos((st.x)*(0.13)*sin(0.23)));
-        float y5 = smoothstep(0.2,0.25,0.3) - smoothstep(0.25,0.31,(st.y*0.12));
-        float y6 = smoothstep(0.9+(st.x*0.012),0.1915,st.y+cos(st.y)) - smoothstep(0.641,0.8191,(st.x+st.y)*0.2);
-        vec3 colorB = vec3(y4+y5)-(y3*(0.913))*(sin(st.x+(uTime*.031592)));
-        colorB = (1.0)*colorB*vec3(.920,0.95030,(0.20-y6))*(sin(st.y-(uTime*.032412)));
-    
-        // a. The DISTANCE from the pixel to the center
-        vec2 bl = step(vec2(0.5),st);
-        float pct = bl.x * bl.y;
-        vec3 colorMix = vec3(0.0);
-        colorMix = mix(colorA*0.432, colorB+0.3892, 0.983*(sin(((y6+y2)))*(cos(pct2/-2.2))));
-    
-        gl_FragColor = vec4(colorMix,1.0);
-    }
-</script>
+                // Each grid item has an image linked to a URL
+                colDiv.innerHTML = `
+                    <a href="${item.url}" target="_blank" rel="noopener noreferrer">
+                        <img src="${item.image}" alt="Image ${index + 1}">
+                    </a>
+                `;
 
-<body style="margin:0px;" onload=start()>
-<canvas id="glcanvas" width=640 height=480 style="height:100%; width:100%; margin:auto; display:block"> 
- Oops, browser has no <code> canvas </code> tag support 
-</canvas>
+                gridContainer.appendChild(colDiv);
+            });
+        }
+
+        // Initialize grid
+        createGrid();
+    </script>
 </body>
-
-</html> 
+</html>
