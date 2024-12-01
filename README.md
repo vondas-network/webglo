@@ -2,15 +2,10 @@
   <img height="60%" width="60%" src="https://github.com/cskonopka/WebGL-Ordinals/blob/main/webglo.png?raw=true"/>
 </h3>
 
-<p align="center"><em>web graphics on the Bitcoin blockchain</em></p>
+<p align="center"><em>decentralized video art on the Bitcoin blockchain</em></p>
 
 # Overview
-I’m a software/hardware developer and a video artist that likes to create tech that doesn’t exist with the goal of empowering others. Doing my best to find tools that are available to everyone. This is one way to approach the problem of content distribution for artist. Some goals for the project:
-
-- Create a single HTML5 website template that renders WebGL fragment shaders without external libraries. 
-- Share insights to others about the Bitcoin inscription process for artistic purposes.
-- Use Bitcoin to distribute art without downtime or censorship.
-- Add libraries to the blockchain where needed.
+WebGL Ordinals is a project with the focus of hosting video art on the Bitcoin using the Ordinals protocol. Rendered using a web browser, an Ordinal version of glsl-canvas.js is used to render web graphics directly from the blockchain.
 
 ## Why is this important?
 
