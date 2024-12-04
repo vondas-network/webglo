@@ -46,20 +46,54 @@
             /* Ensures footer stays at the bottom */
         }
         
+        a {
+            color: white;
+        }
+        
+        .container .my-5 {
+            margin-top: 0em;
+        }
+        
         h1 {
             font-family: "Audiowide", sans-serif;
             text-align: center;
-            margin-bottom: 20px;
+            margin-top: -20px;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-family: "Audiowide", sans-serif;
+            text-align: left;
+            margin-left: 110px;
+            /* margin-bottom: 20px; */
+        }
+        
+        h3 {
+            font-family: "Audiowide", sans-serif;
+            text-align: left;
+            margin-left: 130px;
+            /* margin-bottom: 20px; */
+        }
+        
+        p {
+            font-family: "Audiowide", sans-serif;
+            text-align: left;
+            margin-left: 130px;
+            margin-right: 130px;
+            /* margin-bottom: 20px; */
+        }
+        
+        li {
+            font-family: "Audiowide", sans-serif;
+            text-align: left;
+            margin-left: 130px;
+            /* margin-bottom: 20px; */
         }
         /* Navigation bar styles */
         
         nav {
             font-family: "Audiowide", sans-serif;
-            margin-bottom: 10px;
-        }
-        
-        .container .my-5 {
-            margin-top: 3rem!important;
+            margin-bottom: 30px;
         }
         
         .navbar {
@@ -133,7 +167,7 @@
 
 <body>
     <!-- Fullscreen Background iframe -->
-    <iframe class="background-iframe" src="https://ordinals.com/content/af030674ee65b6bd72e71b92ddb4edbeafbc47768e2e412b7ff2415097447a2ci0" frameborder="0">
+    <iframe class="background-iframe" src="https://ordinals.com/preview/3f838fb74263af62a32240844a5976ffdab0c4b182e5b4c1011111fd05f215e8i0" frameborder="0">
     </iframe>
 
     <!-- Navigation Bar -->
@@ -167,8 +201,32 @@
         <!-- <h1>WebGL Ordinals</h1> -->
         <h1>decentralized video art on the Bitcoin blockchain</h1>
 
+        <h2>Who?</h2>
+        <p>Christopher Konopka is a multidisciplinary artist that focuses on the cross section of human-computer interaction, analog video synthesis and experiential development. They are passionate about finding new ways to connect computers and people
+            with the goal of psychological research. Drawing from his varied skill set, their goal is to develop communication systems that provide insight into individual experiences of the human condition.</p>
+
+        <h2>What?</h2>
+        <p><i>webglo</i> is a project with the focus of hosting video art on the Bitcoin using the Ordinals protocol. Rendered using a web browser, an Ordinal version of glsl-canvas.js is used to render web graphics directly from the blockchain.</p>
+
+        <h2>When?</h2>
+        <li>First Ordinal was created on — <i>2023-06-12 23:05:38 UTC</i></li>
+        <li>Inscription ID — <i>11635450</i></li>
+        <li>Ordinal ID — <a href="https://ord-mirror.magiceden.dev/inscription/5518d36079b3cc854dba0bd6497ec078fbaa996ebd53e908150c845d6a56a463i0 ">5518d36079b3cc854dba0bd6497ec078fbaa996ebd53e908150c845d6a56a463i0</a></li>
+        <li>Sat # — <a href="https://ord-mirror.magiceden.dev/sat/849910637619339 ">849910637619339</a></li>
+        <li>Decentralized JS library—
+            <a href="https://ordinals.com/content/aeb29dfe6396589bd501f2be3478202a6ed75989cfc5ff49dd0d704b012c00eci0 ">glsl-canvas.js v0.2.8</a></li>
+
+        <!-- <h2>Why?</h2>
+        <li>Show the possibilities of decentralized Javascript libraries [glsl-canvas]</li>
+        <li>Show a way to use Bitcoin as a CDN for remote files</li>
+        <li>Use decentralized to create WebGL examples</li>
+        <li>An example of censorship resistant video art using WebGL</li>
+        <li>No external dependencies. HTML5 + Javascript is all you need.</li>
+        <li>Bring abstract video art to Bitcoin</li>
+        <li>Solves the issue of sharing </li>
+        <li>The dimensions of the shader is defined by the size of the device & browser</li> -->
         <!-- Responsive Grid -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 row-cols-lg-5 g-3" id="grid">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 row-cols-lg-5 g-3 " id="grid ">
             <!-- Dynamic content will be injected here -->
         </div>
     </div>
@@ -176,13 +234,13 @@
     <!-- Footer -->
     <footer>
         <nav>
-            <span class="custom-text">
-                <i class="fab fa-youtube"></i> 
-                <a href="https://www.youtube.com/cskonopka" target="_blank" class="nav-link d-inline"></a> 
-                <i class="fab fa-github"></i> 
-                <a href="https://github.com/vondas-network/webglo" target="_blank" class="nav-link d-inline"></a>
-                <i class="fab fa-instagram"></i> 
-                <a href="https://www.instagram.com/cskonopka" target="_blank" class="nav-link d-inline"></a>
+            <span class="custom-text ">
+                <i class="fab fa-youtube "></i> 
+                <a href="https://www.youtube.com/cskonopka " target="_blank " class="nav-link d-inline "></a> 
+                <i class="fab fa-github "></i> 
+                <a href="https://github.com/vondas-network/webglo " target="_blank " class="nav-link d-inline "></a>
+                <i class="fab fa-instagram "></i> 
+                <a href="https://www.instagram.com/cskonopka " target="_blank " class="nav-link d-inline "></a>
             </span>
         </nav>
     </footer>
@@ -213,8 +271,8 @@
 
                 // Each grid item has an image linked to a URL
                 colDiv.innerHTML = `
-                    <a href="${item.url}" target="_blank" rel="noopener noreferrer">
-                        <img src="${item.image}" alt="Image ${index + 1}">
+                    <a href="${item.url} " target="_blank " rel="noopener noreferrer ">
+                        <img src="${item.image} " alt="Image ${index + 1} ">
                     </a>
                 `;
 
