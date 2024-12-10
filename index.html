@@ -151,7 +151,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="./about.html">about</a>
+                        <a class="nav-link" href="./routes/about.html">about</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
@@ -216,7 +216,7 @@
 
                 // Each grid item has an image linked to a URL
                 colDiv.innerHTML = `
-                    <a href="${item.url}" target="_blank" rel="noopener noreferrer">
+                    <a href=../routes/iframe.html?url=${item.url} rel="noopener noreferrer">
                         <img src="${item.image}" alt="Image ${index + 1}">
                     </a>
                 `;

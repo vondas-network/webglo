@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Iframe Example</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Fullscreen */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container">
+        <iframe 
+            src="https://ordinals.com/preview/5518d36079b3cc854dba0bd6497ec078fbaa996ebd53e908150c845d6a56a463i0" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</body>
+</html>
