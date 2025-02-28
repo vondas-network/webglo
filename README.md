@@ -36,9 +36,9 @@ WebGL Ordinals is a project with the focus of hosting video art on the Bitcoin u
 | #12077751 | [link](https://ordinals.com/preview/765dc276c6d8fd4e098cad5af409f79b5316230d59592af8c53f17df5ccd3481i0) |
 | #12077752 | [link](https://ordinals.com/preview/137db8ca401499bdd142b51aa342531cc11638530ae3f09a15ae89526ebeb0a9i0) |
 | #12077753 | [link](https://ordinals.com/preview/66c79249046140a133ed645eac800f6e6999edfc114b61d355a44b5916ff00f2i0) |
-| #12077753 | [link](https://ordinals.com/preview/66c79249046140a133ed645eac800f6e6999edfc114b61d355a44b5916ff00f2i0) |
 | #12077754 | [link](https://ordinals.com/preview/7f6af3ddd89c1ef94f3dd039d0febdabf8a32c3303fe9bb34d165ea96d89176ei0) |
 | #12077755 | [link](https://ordinals.com/preview/5a7891cdf9795c896e633cb75e1e270385e52b7025316949b02d3312f8661c98i0) |
+| #12077756 | [link](https://ordinals.com/preview/d9990b1a3aed14496e835da59fc70783dbce09f1f75aeed9b46794e57e155ffdi0) |
 | #12102422 | [link](https://ordinals.com/preview/56cf52dd2bf2b97e21c5bf5c022360aa3fa93b72959143e54feb9aeed5dc76d8i0) |
 | #12102423 | [link](https://ordinals.com/preview/9adee923231b5ed39a9c08d1bb5eb7e1ae575d42902f5264848a1e3246b8c598i0) |
 | #12102424 | [link](https://ordinals.com/preview/2fbe24ceb06bc433d37321b47701644868cf877fda2d80923e0ed66a3c00a876i0) |
