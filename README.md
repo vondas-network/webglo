@@ -3,6 +3,7 @@
 </h3>
 
 <p align="center"><em>decentralized video art on the Bitcoin blockchain</em></p>
+<a href="https://webglo.btc.us/"><p align="center"><em>webglo.btc.us</em></p></a>
 
 # Overview
 WebGL Ordinals is a project with the focus of hosting video art on the Bitcoin using the Ordinals protocol. Rendered using a web browser, an Ordinal version of glsl-canvas.js is used to render web graphics directly from the blockchain.
