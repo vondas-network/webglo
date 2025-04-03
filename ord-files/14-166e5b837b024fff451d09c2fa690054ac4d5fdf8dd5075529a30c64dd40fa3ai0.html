@@ -1,5 +1,6 @@
-<html>
-<script type="text/javascript">
+
+<!-- saved from url=(0095)https://ordinals.com/content/166e5b837b024fff451d09c2fa690054ac4d5fdf8dd5075529a30c64dd40fa3ai0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script type="text/javascript">
 
 var GL;
 var shaderId;
@@ -8,12 +9,17 @@ var indexBuffer;
 var timer = 0;
 
 function initWebGL(){
+    // Get Canvas Element
     var canvas = document.getElementById("glcanvas");
+    // Get A WebGL Context
     GL = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    // Test for Success
     if (!GL) {
       alert("Unable to initialize WebGL. Your browser may not support it.");
     }
+    // Set clear color to red, fully opaque
     GL.clearColor(1.0, 0.0, 0.0, 1.0);
+    // Clear Screen
     GL.clear(GL.COLOR_BUFFER_BIT| GL.DEPTH_BUFFER_BIT);
 
     initShaderProgram();
@@ -21,86 +27,122 @@ function initWebGL(){
 }
 
 function initShaderProgram(){
+
+    //Create Program and Shaders
     shaderId = GL.createProgram();
     var vertId = GL.createShader(GL.VERTEX_SHADER);
     var fragId = GL.createShader(GL.FRAGMENT_SHADER);
+
+    //Load Shader Source (source text are in scripts below)
     var vert = document.getElementById("vertScript").text;
     var frag = document.getElementById("fragScript").text;
 
     GL.shaderSource(vertId, vert);
     GL.shaderSource(fragId, frag);
+
+    //Compile Shaders
     GL.compileShader(vertId);
     GL.compileShader(fragId);
 
+    //Check Vertex Shader Compile Status
     if (!GL.getShaderParameter(vertId, GL.COMPILE_STATUS)) {  
         alert("Vertex Shader Compiler Error: " + GL.getShaderInfoLog(id));  
         GL.deleteShader(vertId);
         return null;  
     }
 
+    //Check Fragment Shader Compile Status
     if (!GL.getShaderParameter(fragId, GL.COMPILE_STATUS)) {  
         alert("Fragment Shader Compiler Error: " + GL.getShaderInfoLog(id));  
         GL.deleteShader(fragId);
         return null;  
     }
 
+    //Attach and Link Shaders
     GL.attachShader(shaderId, vertId);
     GL.attachShader(shaderId, fragId);
     GL.linkProgram(shaderId);
 
+    //Check Shader Program Link Status
     if (!GL.getProgramParameter(shaderId, GL.LINK_STATUS)) {
       alert("Shader Linking Error: " + GL.getProgramInfoLog(shader));
     }     
+
 }
 
 function initBuffers(){
+
+    //Some Vertex Data
     var vertices = new Float32Array( [
       -1.0, -1.0, 0.0,
       -1.0,  1.0, 0.0,
        1.0,  1.0, 0.0,
        1.0, -1.0, 0.0
     ]);
-
+    //Create A Buffer
     vertexBuffer = GL.createBuffer();
+    //Bind it to Array Buffer
     GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
+    //Allocate Space on GPU
     GL.bufferData(GL.ARRAY_BUFFER, vertices.byteLength, GL.STATIC_DRAW);
+    //Copy Data Over, passing in offset
     GL.bufferSubData(GL.ARRAY_BUFFER, 0, vertices );
 
+    //Some Index Data
     var indices = new Uint16Array([ 0,1,3,2 ]);
+    //Create A Buffer
     indexBuffer = GL.createBuffer();
+    //Bind it to Element Array Buffer
     GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, indexBuffer);
+    //Allocate Space on GPU
     GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, indices.byteLength, GL.STATIC_DRAW);
+    //Copy Data Over, passing in offset
     GL.bufferSubData(GL.ELEMENT_ARRAY_BUFFER, 0, indices );
+
 }
 
+//ANIMATION FUNCTION (to be passed a callback)  see also http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
 window.requestAnimFrame = ( function() {
+   
+    //Find best option given current browser
     return  window.requestAnimationFrame || 
             window.webkitRequestAnimationFrame ||  
             window.mozRequestAnimationFrame || 
             window.oRequestAnimationFrame || 
             window.msRequestAnimationFrame ||
     
+    // if none of the above, use non-native timeout method
     function(callback) {
       window.setTimeout(callback, 1000 / 60);
     };
+  
   } ) (); 
 
 function animationLoop(){
+    // feedback loop requests new frame
     requestAnimFrame( animationLoop );
+    // render function is defined below
     render(); 
 }
 
 function render(){
     timer+=.1;
 
+    //Bind Shader
     GL.useProgram(shaderId);   
+    //Update uniform variable on shader
     var uID = GL.getUniformLocation(shaderId, "uTime");
     GL.uniform1f(uID, timer);
+    //Enable Position Attribute
     var attId = GL.getAttribLocation(shaderId, "position");
     GL.enableVertexAttribArray(attId);
+    //Bind Vertex Buffer
     GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
+    ///Point to Attribute (loc, size, datatype, normalize, stride, offset)
     GL.vertexAttribPointer( attId, 3, GL.FLOAT, false, 0, 0);
+    //Bind Index Buffer
     GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, indexBuffer);
+    //Draw!      --( mode, number_of_elements, data type, offset )
     GL.drawElements(GL.TRIANGLE_STRIP, 4, GL.UNSIGNED_SHORT, 0);
 }
 
@@ -110,6 +152,8 @@ function start(){
 }
 
 </script>
+
+<!-- VERTEX SHADER SOURCE -->
 <script id="vertScript" type="text/glsl">
 
   #ifdef GL_ES
@@ -124,6 +168,7 @@ function start(){
 
 </script>
 
+<!-- FRAGMENT SHADER SOURCE -->
 <script id="fragScript" type="text/glsl">
 
     #ifdef GL_ES
@@ -143,37 +188,33 @@ function start(){
     
     void main() {
         vec2 st = gl_FragCoord.xy/vec2(640,480);
-        st -= 0.5;  // becomes -0.5 to 0.5
+        st -= 1.80*cos(0.32); 
         st *= 12.0;
         float pct2 = 0.0;
         pct2 = distance(st,vec2(0.5));
     
-        float y3 = sin(cos((st.y)*(0.10)))-sin(st.x+st.y*02.2);
-        float y = smoothstep(1.2-(sin(((y3)))*(cos(st.y/-9.2))),0.5,st.x) - smoothstep(0.5,0.1,(st.x*0.2))+(sin(st.x-(uTime*.0412)));
-        float y2 = smoothstep(04.91,02.5,st.y+st.x) - smoothstep(0.481,0.918,st.y);
-        vec3 colorA = vec3(y*y2)-(y3-(0.14))*(sin(st.x-(uTime*.02412)));
-        colorA = (1.0)*colorA*vec3(.020+(sin(((y3+y)))+(cos(pct2*-0.2))),0.120,(0.10+(sin(y3))));
+        float y = (smoothstep((sin(-pct2*((sin(st.y/st.x))*0.231)*(cos(0.91913212))))*(tan((st.y)*0.20)),(0.3229005),(0.9132)))/(smoothstep((sin(pct2*((cos(st.y-st.x))*0.42001)*(cos(02.13212))))*(sin((st.x+st.y)*.820)),(02.28229005),(.1732*((cos(-st.y-st.x)*tan(.93))/(cos(-st.x+st.y)*0.3)))));
     
-        float y4 = cos(cos((st.x)*(0.13)*sin(0.23)));
-        float y5 = smoothstep(0.2,0.25,0.3) - smoothstep(0.25,0.31,(st.y*0.12));
-        float y6 = smoothstep(0.9+(st.x*0.012),0.1915,st.y+cos(st.y)) - smoothstep(0.641,0.8191,(st.x+st.y)*0.2);
-        vec3 colorB = vec3(y4+y5)-(y3*(0.913))*(sin(st.x+(uTime*.031592)));
-        colorB = (1.0)*colorB*vec3(.920,0.95030,(0.20-y6))*(sin(st.y-(uTime*.032412)));
+        float y2 = (smoothstep((tan(-pct2*(sin(st.y/st.x*.30)*.7519591321)-(sin(.149913212))))+(tan((-st.x+st.y)*0.20)),0.9229005,0.12832*cos(-st.y*st.x*0.5020))) / (smoothstep((cos(-pct2*(sin(st.y*(st.x*0.02))*0.1321)-(tan(0.1913212))))+(cos((st.y)*0.20)),0.9229005,0.9132));
     
-        // a. The DISTANCE from the pixel to the center
-        vec2 bl = step(vec2(0.5),st);
+        vec3 colorB = vec3(y*y2)*.90;
+        vec3 colorC = vec3(y/y2)*.30;
+        vec3 colorC2 = vec3(y+y2)*0.630;
+        colorB = (1.0)*colorB*vec3(2.89281990*(st.y/(tan(st.x)+cos(st.y*(0.082*cos(-st.y*sin(st.y)))))),0.1294120*tan((st.x-(st.y-st.x*(-0.92013+-st.y)))*0.02),(0.084139230*(sin(y2-st.y*(0.97012))+(-st.y*st.x)))-(tan((1.0*(-st.y*-st.x)))*(1.20*cos(-st.y*st.x))));
+    
+        vec2 bl = step(vec2(0.5),(st));
         float pct = bl.x * bl.y;
         vec3 colorMix = vec3(0.0);
-        colorMix = mix(colorA*0.432, colorB+0.3892, 0.983*(sin(((y6+y2)))*(cos(pct2/-2.2))));
-    
+        colorMix = mix(colorC*0.1910, (cos(colorC2+0.10193)*cos(colorC2*.893))*(cos((st.y/st.y)*(uTime*0.01412))), (0.92*colorB/(cos(0.1919202)))+(sin(cos(st.x-st.y)+(uTime*0.01412))));
+        
         gl_FragColor = vec4(colorMix,1.0);
     }
 </script>
 
-<body style="margin:0px;" onload=start()>
-<canvas id="glcanvas" width=640 height=480 style="height:100%; width:100%; margin:auto; display:block"> 
+</head><body style="margin:0px;" onload="start()">
+<canvas id="glcanvas" width="640" height="480" style="height:100%; width:100%; margin:auto; display:block"> 
  Oops, browser has no <code> canvas </code> tag support 
 </canvas>
-</body>
 
-</html> 
+
+ </body></html>
